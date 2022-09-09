@@ -42,6 +42,7 @@ checkIn(flight, jonas);
 
 //Example 1
 
+/*
 function firstWordUpperCase(str) {
   const [first, ...rest] = str.split(" ");
   return `${first.toUpperCase()} ${rest.join(" ")}`;
@@ -78,3 +79,25 @@ function passOrFail(arr, fn) {
 }
 
 passOrFail(grades, gradeAvg);
+
+*/
+
+// --------------------------------------------FUNCTIONS RETURNING FUNCTIONS--------------------------
+console.log("-----------functions returning functions-------------------");
+
+function greet(greeting) {
+  return function greetName(name) {
+    console.log(`${greeting} there ${name}, how are you?`);
+  };
+}
+
+greet("Hey")("Jean");
+
+//Same thing but with an Arrow function
+const greet2 = (greeting2) => {
+  return function greetName2(name2) {
+    console.log(`${greeting2} there ${name2}, how are you?`);
+  };
+};
+
+greet2("Hello")("Jean");
