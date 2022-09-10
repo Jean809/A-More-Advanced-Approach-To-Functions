@@ -83,6 +83,9 @@ passOrFail(grades, gradeAvg);
 */
 
 // --------------------------------------------FUNCTIONS RETURNING FUNCTIONS--------------------------
+
+/*
+
 console.log("-----------functions returning functions-------------------");
 
 function greet(greeting) {
@@ -101,3 +104,44 @@ const greet2 = (greeting2) => {
 };
 
 greet2("Hello")("Jean");
+
+*/
+
+// ------------------------------------ The call and apply method -------------------------------
+
+const jetblue = {
+  airline: "jetblue",
+  iataCode: "HM",
+  bookings: [],
+
+  book: function (flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline}, flight: ${this.iataCode}${flightNum}.`
+    );
+
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+const bookFunction = jetblue.book;
+
+jetblue.book("1234", "Jean");
+console.log(jetblue);
+
+const americanAirline = {
+  airline: "American Airline",
+  iataCode: "QE",
+  bookings: [],
+  //Instead of copying and pasting the method "book" into this airline, we will define a variable and set the method equal to that variable and use it here.
+  //However, this is not good practice, so we will use the "call" method to assign this values to the "american airline" obnject
+};
+
+const frontier = {
+  airline: "frontier",
+  iataCode: "MY",
+  bookings: [],
+};
+
+bookFunction.call(americanAirline, "1234", "Jean");
+bookFunction.call(jetblue, "1234", "Kemish");
+bookFunction.call(frontier, "1234", "Nub");
