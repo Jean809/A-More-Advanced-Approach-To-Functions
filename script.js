@@ -125,8 +125,12 @@ const jetblue = {
 
 const bookFunction = jetblue.book;
 
+/*
+
 jetblue.book("1234", "Jean");
 console.log(jetblue);
+
+*/
 
 const americanAirline = {
   airline: "American Airline",
@@ -142,6 +146,37 @@ const frontier = {
   bookings: [],
 };
 
+/*
+
 bookFunction.call(americanAirline, "1234", "Jean");
 bookFunction.call(jetblue, "1234", "Kemish");
 bookFunction.call(frontier, "1234", "Nub");
+
+*/
+
+// ------------------------------------ The bind Method ----------------------------------------------------
+
+const bookJT = bookFunction.bind(jetblue);
+const bookAM = bookFunction.bind(americanAirline);
+const bookFT = bookFunction.bind(frontier);
+
+bookAM(2134, "Jean");
+
+const bookJT25 = bookFunction.bind(jetblue, 12345);
+
+bookJT25("Jean");
+bookJT25("Kemish");
+
+//bind Method w/ Event Listeners
+
+jetblue.planes = 300;
+jetblue.buyPlane = function () {
+  this.planes++;
+  console.log(this);
+};
+
+//const buyPlane = jetblue.buyPlane;
+
+document
+  .querySelector(".buy")
+  .addEventListener("click", jetblue.buyPlane.bind(jetblue));
